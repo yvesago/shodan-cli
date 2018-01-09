@@ -1,8 +1,6 @@
 # shodan-cli
 
 
-## Description
-
 Simple golang Shodan command line client with default request.
 
 
@@ -28,9 +26,11 @@ Usage of ./shodan-cli:
 On first call `shodan-cli` will ask an optional default request stored in `.shoddanrc`.
 
 
+### Query sample
 ![Shodan Query](img/ShodanQuery.png)
 
 
+### Network query sample
 ![Shodan Net Query](img/ShodanNetQuery.png)
 
 
