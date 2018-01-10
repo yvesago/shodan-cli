@@ -1,10 +1,5 @@
 package main
 
-/*
-patch IP to int64 for 32 bits
- ... /src/github.com/ns3777k/go-shodan/shodan/host.go
-*/
-
 import (
 	"bufio"
 	"flag"
@@ -14,10 +9,8 @@ import (
 	"strings"
 	"time"
 
-	//"gopkg.in/ns3777k/go-shodan.v2/shodan"
-	"github.com/ns3777k/go-shodan/shodan"
-
 	"github.com/logrusorgru/aurora"
+	"gopkg.in/ns3777k/go-shodan.v2/shodan"
 )
 
 var au aurora.Aurora
@@ -25,6 +18,7 @@ var au aurora.Aurora
 func parseArgs() (string, string, string, bool) {
 	var query, net, ip string
 	var compact, color bool
+
 	flag.StringVar(&query, "q", "", "query ['!http']")
 	flag.StringVar(&net, "n", "", "net [192.168.0.0/24]")
 	flag.StringVar(&ip, "i", "", "ip [192.168.0.1]")
