@@ -73,7 +73,7 @@ func readDefaultQuery(defPath string) (string, error) {
 
 	file, err := os.Open(defPath)
 	if err != nil {
-		fmt.Println("Enter default request [org:\"some Org\"] : ")
+		fmt.Println("Enter default query [org:\"some Org\"] : ")
 		reader := bufio.NewReader(os.Stdin)
 		defQuery, _ = reader.ReadString('\n')
 		defQuery = strings.TrimSuffix(defQuery, "\n")
@@ -113,7 +113,7 @@ func main() {
 		defQuery, _ = readDefaultQuery(defPath)
 	}
 	if defQuery != "" {
-		fmt.Printf("Default request from file %s:\n %s\n", defPath, defQuery)
+		fmt.Printf("Default query from file %s:\n %s\n", defPath, defQuery)
 		query += ` ` + defQuery
 	}
 	if net != "" {

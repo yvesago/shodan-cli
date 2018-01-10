@@ -1,7 +1,7 @@
 # shodan-cli
 
 
-Simple golang Shodan command line client with default request.
+Simple golang Shodan command line client with default query.
 
 
 ## Usage
@@ -23,7 +23,7 @@ Usage of ./shodan-cli:
     	query ['!http']
 ```
 
-On first call `shodan-cli` will ask an optional default request stored in `.shoddanrc`.
+On first call `shodan-cli` will ask an optional default query stored in `.shoddanrc`.
 
 
 ### Query sample
