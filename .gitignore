@@ -1,8 +1,12 @@
 # Binaries for programs and plugins
+shodan-cli
 *.exe
 *.dll
 *.so
 *.dylib
+
+*.swp
+.shoddanrc
 
 # Test binary, build with `go test -c`
 *.test
