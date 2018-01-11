@@ -30,6 +30,10 @@ On first call `shodan-cli` will ask an optional default query stored in `.shodda
 ![Shodan Query](img/ShodanQuery.png)
 
 
+### IP query sample
+![Shodan Query](img/ShodanWinQuery.png)
+
+
 ### Network query sample
 ![Shodan Net Query](img/ShodanNetQuery.png)
 
