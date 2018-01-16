@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -131,7 +132,8 @@ func main() {
 			for j, hd := range h.Data {
 				printHost(j, hd)
 				if compact == false {
-					fmt.Printf("--\n%+v\n--\n", hd)
+					prettyJSON, _ := json.MarshalIndent(hd, "", "\t")
+					fmt.Println(string(prettyJSON))
 				} else {
 					fmt.Printf("--\n%+v\n--\n", hd.Data)
 				}
