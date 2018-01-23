@@ -100,8 +100,17 @@ func readDefaultQuery(defPath string) (string, error) {
 }
 
 func main() {
-	if os.Getenv("SHODAN") == "" {
-		fmt.Printf("Missing $SHODAN API Key\n export SHODAN=xxxxx...\n")
+	apiKey := ""
+
+	switch {
+	case os.Getenv("SHODAN_KEY") != "":
+		apiKey = os.Getenv("SHODAN_KEY")
+	case os.Getenv("SHODAN") != "":
+		apiKey = os.Getenv("SHODAN")
+	}
+
+	if apiKey == "" {
+		fmt.Printf("Missing $SHODAN_KEY API key\n export SHODAN_KEY=xxxxx...\n")
 		os.Exit(0)
 	}
 
@@ -121,7 +130,7 @@ func main() {
 		query = "net:" + net
 	}
 
-	client := shodan.NewClient(nil, os.Getenv("SHODAN"))
+	client := shodan.NewClient(nil, apiKey)
 
 	// Print only one IP
 	if ip != "" {
