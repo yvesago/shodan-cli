@@ -8,7 +8,7 @@ Simple golang Shodan command line client with default query.
 
 To start working with Shodan you need an API key. You can do this at [https://www.shodan.io](https://www.shodan.io).
 
-Use the API key in `$SHODAN` environment variable.
+Use the API key in `$SHODAN_KEY` environment variable.
 
 
 ```bash
