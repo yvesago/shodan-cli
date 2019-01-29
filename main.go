@@ -162,7 +162,7 @@ func main() {
 				}
 			}
 			fmt.Println("Maybe more details with:")
-			fmt.Println(au.Bold(au.Sprintf(" curl https://api.shodan.io/shodan/host/%s?key=$SHODAN | jq '.'\n", ip)))
+			fmt.Println(au.Bold(au.Sprintf(" curl https://api.shodan.io/shodan/host/%s?key=$SHODAN_KEY | jq '.'\n", ip)))
 		}
 		os.Exit(0)
 	}
