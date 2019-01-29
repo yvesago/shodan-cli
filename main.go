@@ -15,7 +15,7 @@ import (
 	"gopkg.in/ns3777k/go-shodan.v3/shodan"
 )
 
-var version = "0.1.0"
+var version = "0.2.0"
 
 var au aurora.Aurora
 
@@ -60,8 +60,8 @@ func printHost(j int, h *shodan.HostData) {
 	if h.SSL != nil {
 		sslv := strings.Join(h.SSL.Versions, " ")
 		ssld := h.SSL.Certificate.Expires
-		t, _ := time.Parse("20060102030405Z", ssld) //20191127120000Z
-		fmt.Printf("  SSL: %s %s %s\n", au.Brown(sslv), t.Format("02-Jan-2006"), au.Brown(h.SSL.Certificate.Subject.CommonName))
+		te, _ := time.Parse("20060102150405Z", ssld) //20191127120000Z
+		fmt.Printf("  SSL: %s %s %s\n", au.Brown(sslv), te.Format("02-Jan-2006"), au.Brown(h.SSL.Certificate.Subject.CommonName))
 	}
 
 	cpe := strings.Join(h.CPE, ",")
@@ -181,11 +181,12 @@ func main() {
 
 	// Query
 	res, err := client.GetHostsForQuery(context.Background(), a)
-	log.Println(res.Total)
 	if err != nil {
 		fmt.Println("Error HostsForQuery:", err)
 		os.Exit(0)
 	}
+	log.Println(res.Total)
+
 	// Print results
 	for j := range res.Matches {
 		printHost(j, res.Matches[j])
