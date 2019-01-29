@@ -42,7 +42,7 @@ On first call `shodan-cli` will ask an optional default query stored in `.shodda
 
 ```bash
 
-$ go get gopkg.in/ns3777k/go-shodan.v2/shodan
+$ go get gopkg.in/ns3777k/go-shodan.v3/shodan
 $ go get github.com/logrusorgru/aurora
 
 $ go build
@@ -73,6 +73,6 @@ $ GOOS=darwin go build -ldflags "-s" -o shodan-cliOsX
 
 MIT License
 
-Copyright (c) 2018 Yves Agostini
+Copyright (c) 2018-2019 Yves Agostini
 
 <yves+github@yvesago.net>

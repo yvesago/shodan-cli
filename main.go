@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -11,7 +12,7 @@ import (
 	"time"
 
 	"github.com/logrusorgru/aurora"
-	"gopkg.in/ns3777k/go-shodan.v2/shodan"
+	"gopkg.in/ns3777k/go-shodan.v3/shodan"
 )
 
 var version = "0.1.0"
@@ -55,6 +56,19 @@ func printHost(j int, h *shodan.HostData) {
 	fmt.Printf("%d> %s\t[%d%s]\t%s\t\t%s\n",
 		j, au.Bold(h.IP), h.Port, udp,
 		au.Green(h.Product), t.Format("02/01/2006 15h04"))
+
+	if h.SSL != nil {
+		sslv := strings.Join(h.SSL.Versions, " ")
+		ssld := h.SSL.Certificate.Expires
+		t, _ := time.Parse("20060102030405Z", ssld) //20191127120000Z
+		fmt.Printf("  SSL: %s %s %s\n", au.Brown(sslv), t.Format("02-Jan-2006"), au.Brown(h.SSL.Certificate.Subject.CommonName))
+	}
+
+	cpe := strings.Join(h.CPE, ",")
+	cpe = strings.Replace(cpe, "cpe:/", "", -1)
+	if len(cpe) > 0 {
+		fmt.Printf("  %s ", au.Brown(cpe))
+	}
 	if len(h.OS) > 0 {
 		fmt.Printf("  (%s) ", au.Magenta(h.OS))
 	}
@@ -64,7 +78,7 @@ func printHost(j int, h *shodan.HostData) {
 			fmt.Printf(" %s", au.Cyan(h.Hostnames[a]))
 		}
 	}
-	if len(h.OS) > 0 || len(h.Hostnames) > 0 {
+	if len(h.OS) > 0 || len(h.Hostnames) > 0 || len(cpe) > 0 {
 		fmt.Println()
 	}
 }
@@ -134,7 +148,7 @@ func main() {
 
 	// Print only one IP
 	if ip != "" {
-		h, er := client.GetServicesForHost(ip, nil)
+		h, er := client.GetServicesForHost(context.Background(), ip, nil)
 		if er != nil {
 			fmt.Println("Error:", er)
 		} else {
@@ -158,7 +172,7 @@ func main() {
 	log.Printf("%+v\n", a)
 
 	// Count
-	r, e := client.GetHostsCountForQuery(a)
+	r, e := client.GetHostsCountForQuery(context.Background(), a)
 	if e != nil {
 		fmt.Println("Error GetHostsCountForQuery:", e)
 		os.Exit(0)
@@ -166,7 +180,7 @@ func main() {
 	log.Println(r.Total)
 
 	// Query
-	res, err := client.GetHostsForQuery(a)
+	res, err := client.GetHostsForQuery(context.Background(), a)
 	log.Println(res.Total)
 	if err != nil {
 		fmt.Println("Error HostsForQuery:", err)
