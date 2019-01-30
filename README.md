@@ -38,6 +38,10 @@ On first call `shodan-cli` will ask an optional default query stored in `.shodda
 ![Shodan Net Query](img/ShodanNetQuery.png)
 
 
+### Version 0.2.0: SSL and CPE
+![Shodan SSL and CPE](img/ShodanCli-v0.2.0.png)
+
+
 ## Build
 
 ```bash
