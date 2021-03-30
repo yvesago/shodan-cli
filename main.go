@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/logrusorgru/aurora"
-	"gopkg.in/ns3777k/go-shodan.v3/shodan"
+	"gopkg.in/ns3777k/go-shodan.v4/shodan"
 )
 
 var version = "0.2.0"
