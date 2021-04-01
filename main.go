@@ -12,10 +12,11 @@ import (
 	"time"
 
 	"github.com/logrusorgru/aurora"
-	"gopkg.in/ns3777k/go-shodan.v4/shodan"
+	"github.com/ns3777k/go-shodan/v4/shodan"
 )
 
-var version = "0.2.0"
+// Version build via Makefile
+var Version string
 
 var au aurora.Aurora
 
@@ -28,7 +29,7 @@ func parseArgs() (string, string, string, bool) {
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s:\n", au.Bold(os.Args[0]))
 		flag.PrintDefaults()
-		fmt.Fprintf(os.Stderr, "\n  Version: %s\n", au.Bold(version))
+		fmt.Fprintf(os.Stderr, "\n  Version: %s\n", au.Bold(Version))
 	}
 
 	flag.StringVar(&query, "q", "", "query ['!http']")

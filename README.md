@@ -46,24 +46,17 @@ On first call `shodan-cli` will ask an optional default query stored in `.shodda
 
 ```bash
 
-$ go get gopkg.in/ns3777k/go-shodan.v4/shodan
-$ go get github.com/logrusorgru/aurora
+$ git clone https://github.com/yvesago/shodan-cli.git
+$ cd shodan-cli
 
-$ go build
+$ make
 
 ```
 
-As usual, you can build executables for multiple platforms :
+Cross building :
 ```bash
 
-$ # linux 32 bits
-$ GOARCH=386 go build -ldflags "-s" -o shodan-cli32
-
-$ # windows 32 bits
-$ GOOS=windows GOARCH=386 go build  -ldflags "-s" -o shodan-cli32.exe
-
-$ # OsX
-$ GOOS=darwin go build -ldflags "-s" -o shodan-cliOsX
+$ make all
 
 ```
 
